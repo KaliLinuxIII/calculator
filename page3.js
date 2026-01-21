@@ -101,12 +101,12 @@ const handleHoldEnd = () => {
     
     // Only process input if button says "Input Code"
     if (isInInputMode && holdDuration < 3000) {
-        if (holdDuration < 600) {
-            // Tap (less than 0.6 second) = dot
+        if (holdDuration < 150) {
+            // Tap (less than 0.15 second) = dot
             currentSequence += '. ';
             flashScreen('green');
         } else {
-            // Hold (0.6 second or more) = dash
+            // Hold (0.15 second or more) = dash
             currentSequence += '- ';
             flashScreen('blue');
         }
