@@ -27,7 +27,9 @@ function checkPassword() {
     messageElement.classList.add('correct');
     document.getElementById('passwordInput').value = '';
     setTimeout(() => {
-      messageElement.textContent = 'ACCESS GRANTED';
+      messageElement.textContent = 'WELCOME';
+      messageElement.classList.remove('correct');
+      messageElement.style.color = '#00ff00';
     }, 2000);
   } else {
     failedAttempts++;
