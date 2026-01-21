@@ -60,6 +60,8 @@ body {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .button:hover {
@@ -107,7 +109,7 @@ body {
 
 .password-box {
   padding: 12px 20px;
-  font-size: 1rem;
+  font-size: 16px;
   border: 2px solid #00ff00;
   border-radius: 5px;
   background: #1a1a2e;
@@ -116,6 +118,7 @@ body {
   margin-bottom: 15px;
   text-align: center;
   transition: all 0.3s ease;
+  touch-action: manipulation;
 }
 
 .password-box:focus {

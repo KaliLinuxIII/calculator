@@ -106,6 +106,8 @@ body {
     font-family: 'Courier New', monospace;
     transition: all 0.3s ease;
     box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .logout-btn:hover {
@@ -138,6 +140,8 @@ body {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .enter-btn:hover {
