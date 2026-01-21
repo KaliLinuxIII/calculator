@@ -98,6 +98,10 @@ body {
     border-radius: 5px;
     font-size: 1em;
     font-weight: bold;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     cursor: pointer;
     font-family: 'Courier New', monospace;
     transition: all 0.3s ease;
@@ -130,6 +134,10 @@ body {
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
     z-index: 1000;
     position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .enter-btn:hover {

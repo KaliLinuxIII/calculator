@@ -56,6 +56,10 @@ body {
   font-weight: bold;
   transition: all 0.3s ease;
   margin: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .button:hover {
