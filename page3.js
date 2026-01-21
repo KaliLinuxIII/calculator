@@ -64,7 +64,8 @@ function logout() {
 // Button event listeners
 const codeBtn = document.getElementById('codeBtn');
 
-codeBtn.addEventListener('mousedown', () => {
+const handleHoldStart = (e) => {
+    e.preventDefault();
     holdStartTime = Date.now();
     isHolding = true;
     
@@ -80,9 +81,9 @@ codeBtn.addEventListener('mousedown', () => {
         enterBtn.style.display = 'block';
         updateAttemptsDisplay();
     }, 3000);
-});
+};
 
-codeBtn.addEventListener('mouseup', () => {
+const handleHoldEnd = () => {
     if (!isHolding) return;
     
     isHolding = false;
@@ -122,12 +123,21 @@ codeBtn.addEventListener('mouseup', () => {
         enterBtn.style.display = 'block';
         updateAttemptsDisplay();
     }
-});
+};
 
-codeBtn.addEventListener('mouseleave', () => {
+const handleHoldCancel = () => {
     clearTimeout(holdTimeout);
     isHolding = false;
-});
+};
+
+codeBtn.addEventListener('mousedown', handleHoldStart);
+codeBtn.addEventListener('touchstart', handleHoldStart, { passive: false });
+
+codeBtn.addEventListener('mouseup', handleHoldEnd);
+codeBtn.addEventListener('touchend', handleHoldEnd);
+codeBtn.addEventListener('touchcancel', handleHoldCancel);
+
+codeBtn.addEventListener('mouseleave', handleHoldCancel);
 
 // Click handler for returning to home page
 codeBtn.addEventListener('click', (e) => {

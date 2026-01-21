@@ -103,7 +103,8 @@ functionButtons.forEach(button => {
   
   // Add hold detection for decimal button only
   if (button.dataset.action === 'decimal') {
-    button.addEventListener('mousedown', (e) => {
+    const startHold = (e) => {
+      e.preventDefault();
       // Only allow reset if the exact sequence was entered: 121408 → x^y → 3
       // This prevents cheating by just typing the result number
       const isResetCode = (previousInput === '121408' && operation === 'exponent' && currentInput === '3');
@@ -130,23 +131,24 @@ functionButtons.forEach(button => {
           }, 2000);
         }, 3000);
       }
-    });
+    };
     
-    button.addEventListener('mouseup', () => {
+    const endHold = () => {
       if (holdTimer) {
         clearTimeout(holdTimer);
         holdTimer = null;
       }
       isHolding = false;
-    });
+    };
     
-    button.addEventListener('mouseleave', () => {
-      if (holdTimer) {
-        clearTimeout(holdTimer);
-        holdTimer = null;
-      }
-      isHolding = false;
-    });
+    button.addEventListener('mousedown', startHold);
+    button.addEventListener('touchstart', startHold, { passive: false });
+    
+    button.addEventListener('mouseup', endHold);
+    button.addEventListener('touchend', endHold);
+    button.addEventListener('touchcancel', endHold);
+    
+    button.addEventListener('mouseleave', endHold);
   }
   
   button.addEventListener('click', () => {
