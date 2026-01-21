@@ -128,3 +128,59 @@ body {
   color: #00ff88;
   opacity: 0.5;
 }
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+  .message {
+    font-size: 2.5rem;
+  }
+
+  .subtext {
+    font-size: 1.2rem;
+  }
+
+  .button {
+    font-size: 1rem;
+    padding: 12px 30px;
+  }
+
+  .password-box {
+    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .container {
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .message {
+    font-size: 2rem;
+  }
+
+  .subtext {
+    font-size: 1rem;
+  }
+
+  .button {
+    font-size: 16px;
+    padding: 10px 25px;
+  }
+
+  .password-box {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .message {
+    font-size: 1.5rem;
+  }
+
+  .button {
+    font-size: 16px;
+    padding: 8px 20px;
+  }
+}

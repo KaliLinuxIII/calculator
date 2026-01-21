@@ -243,3 +243,70 @@ body.flash-green {
 .welcome-box.flash-border-green {
     animation: borderFlashGreen 0.8s ease-out;
 }
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    .welcome-box {
+        padding: 30px 20px;
+        max-width: 95%;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .message {
+        font-size: 1rem;
+    }
+
+    .code-display {
+        font-size: 1.5em;
+        letter-spacing: 8px;
+    }
+
+    .logout-btn,
+    .enter-btn {
+        font-size: 16px;
+        padding: 12px 25px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .welcome-box {
+        padding: 25px 15px;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .message {
+        font-size: 0.95rem;
+    }
+
+    .info-panel p {
+        font-size: 0.85em;
+    }
+
+    .code-display {
+        font-size: 1.3em;
+        letter-spacing: 6px;
+    }
+
+    .logout-btn,
+    .enter-btn {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .code-display {
+        font-size: 1.1em;
+        letter-spacing: 5px;
+    }
+}

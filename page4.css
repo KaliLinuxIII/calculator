@@ -101,3 +101,53 @@ body {
 .home-btn:active {
     transform: scale(0.98);
 }
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    .success-box {
+        padding: 30px 20px;
+        max-width: 95%;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .message {
+        font-size: 1rem;
+    }
+
+    .home-btn {
+        font-size: 16px;
+        padding: 12px 25px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .success-box {
+        padding: 25px 15px;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .message {
+        font-size: 0.95rem;
+    }
+
+    .info-panel p {
+        font-size: 0.85em;
+    }
+
+    .home-btn {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .title {
+        font-size: 1.5rem;
+    }
+}
