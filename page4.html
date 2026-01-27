@@ -8,13 +8,36 @@
 </head>
 <body>
     <div class="container">
-        <div class="success-box">
-            <h1 class="title">SUCCESS</h1>
-            <p class="message">You have unlocked the secret!</p>
-            <div class="info-panel">
-                <p>Congratulations on solving the puzzle.</p>
+        <div class="cipher-box">
+            <h1 class="title">TRANSPOSITION CIPHER</h1>
+            <p class="message">Scramble messages using a keyword</p>
+            
+            <div class="input-section">
+                <label for="keywordInput">Keyword (e.g., "dog"):</label>
+                <input type="text" id="keywordInput" placeholder="Enter keyword">
             </div>
-            <button class="home-btn" onclick="window.location.href='index.html'">Return to Calculator</button>
+            
+            <div class="input-section">
+                <label for="messageInput">Message:</label>
+                <textarea id="messageInput" placeholder="Enter your message here..."></textarea>
+            </div>
+            
+            <div class="button-group">
+                <button class="action-btn encrypt-btn" onclick="encryptMessage()">ENCRYPT</button>
+                <button class="action-btn decrypt-btn" onclick="decryptMessage()">DECRYPT</button>
+                <button class="action-btn clear-btn" onclick="clearAll()">CLEAR</button>
+            </div>
+            
+            <div class="input-section">
+                <label for="outputArea">Result:</label>
+                <textarea id="outputArea" readonly placeholder="Result will appear here..."></textarea>
+            </div>
+            
+            <div class="info-panel">
+                <p id="statusText">Ready to encrypt/decrypt</p>
+            </div>
+            
+            <button class="home-btn" onclick="window.location.href='startpage.html'">Return to Calculator</button>
         </div>
     </div>
     <script src="page4.js"></script>
