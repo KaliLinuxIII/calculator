@@ -22,8 +22,10 @@ function encryptMessage() {
     
     try {
         const encrypted = columnarTranspositionEncrypt(message, keyword);
-        document.getElementById('outputArea').value = encrypted;
-        statusText.textContent = `Message encrypted with keyword "${keyword}"`;
+        // Convert to lowercase and remove spaces
+        const formattedOutput = encrypted.toLowerCase().replace(/\s/g, '');
+        document.getElementById('outputArea').value = formattedOutput;
+        statusText.textContent = 'Message encrypted';
         statusText.className = 'success';
     } catch (error) {
         statusText.textContent = `Error: ${error.message}`;
@@ -50,8 +52,10 @@ function decryptMessage() {
     
     try {
         const decrypted = columnarTranspositionDecrypt(message, keyword);
-        document.getElementById('outputArea').value = decrypted;
-        statusText.textContent = `Message decrypted with keyword "${keyword}"`;
+        // Convert to lowercase and remove spaces
+        const formattedOutput = decrypted.toLowerCase().replace(/\s/g, '');
+        document.getElementById('outputArea').value = formattedOutput;
+        statusText.textContent = 'Message decrypted';
         statusText.className = 'success';
     } catch (error) {
         statusText.textContent = `Error: ${error.message}`;
@@ -65,6 +69,30 @@ function clearAll() {
     document.getElementById('outputArea').value = '';
     document.getElementById('statusText').textContent = 'Ready to encrypt/decrypt';
     document.getElementById('statusText').className = '';
+}
+
+function copyOutput() {
+    const outputArea = document.getElementById('outputArea');
+    const statusText = document.getElementById('statusText');
+    
+    if (!outputArea.value) {
+        statusText.textContent = 'Nothing to copy';
+        statusText.className = 'error';
+        return;
+    }
+    
+    outputArea.select();
+    outputArea.setSelectionRange(0, 99999);
+    
+    navigator.clipboard.writeText(outputArea.value).then(() => {
+        statusText.textContent = 'Copied to clipboard!';
+        statusText.className = 'success';
+    }).catch(() => {
+        // Fallback for older browsers
+        document.execCommand('copy');
+        statusText.textContent = 'Copied to clipboard!';
+        statusText.className = 'success';
+    });
 }
 
 function columnarTranspositionEncrypt(plaintext, keyword) {
@@ -87,7 +115,11 @@ function columnarTranspositionEncrypt(plaintext, keyword) {
         const row = [];
         for (let j = 0; j < keyLength; j++) {
             const charIndex = i * keyLength + j;
-            row.push(charIndex < text.length ? text[charIndex] : 'X');
+            if (charIndex < text.length) {
+                row.push(text[charIndex]);
+            } else {
+                row.push('');
+            }
         }
         grid.push(row);
     }
@@ -96,7 +128,9 @@ function columnarTranspositionEncrypt(plaintext, keyword) {
     let ciphertext = '';
     for (let colIndex of columnOrder) {
         for (let row of grid) {
-            ciphertext += row[colIndex];
+            if (row[colIndex]) {
+                ciphertext += row[colIndex];
+            }
         }
     }
     
@@ -139,9 +173,6 @@ function columnarTranspositionDecrypt(ciphertext, keyword) {
     for (let row of grid) {
         plaintext += row.join('');
     }
-    
-    // Remove padding 'X' characters from the end
-    plaintext = plaintext.replace(/X+$/, '');
     
     return plaintext;
 }

@@ -13,7 +13,7 @@
             <p class="message">Scramble messages using a keyword</p>
             
             <div class="input-section">
-                <label for="keywordInput">Keyword (e.g., "dog"):</label>
+                <label for="keywordInput">Keyword:</label>
                 <input type="text" id="keywordInput" placeholder="Enter keyword">
             </div>
             
@@ -30,7 +30,10 @@
             
             <div class="input-section">
                 <label for="outputArea">Result:</label>
-                <textarea id="outputArea" readonly placeholder="Result will appear here..."></textarea>
+                <div class="output-container">
+                    <textarea id="outputArea" readonly placeholder="Result will appear here..."></textarea>
+                    <button class="copy-btn" onclick="copyOutput()" title="Copy to clipboard">COPY</button>
+                </div>
             </div>
             
             <div class="info-panel">
