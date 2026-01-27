@@ -140,7 +140,8 @@ function columnarTranspositionEncrypt(plaintext, keyword) {
 function columnarTranspositionDecrypt(ciphertext, keyword) {
     const key = keyword.toUpperCase();
     const keyLength = key.length;
-    const textLength = ciphertext.length;
+    const text = ciphertext.toUpperCase().replace(/\s/g, '');
+    const textLength = text.length;
     const numRows = Math.ceil(textLength / keyLength);
     
     // Create column order based on alphabetical order of keyword
@@ -149,11 +150,18 @@ function columnarTranspositionDecrypt(ciphertext, keyword) {
     
     const columnOrder = sortedKey.map(item => item.index);
     
-    // Calculate column heights
-    const fullColumns = textLength % keyLength || keyLength;
-    const columnHeights = columnOrder.map((_, i) => 
-        i < fullColumns ? numRows : numRows - 1
-    );
+    // Calculate how many characters each column has based on original positions
+    const originalColumnHeights = [];
+    for (let col = 0; col < keyLength; col++) {
+        let height = 0;
+        for (let row = 0; row < numRows; row++) {
+            const charIndex = row * keyLength + col;
+            if (charIndex < textLength) {
+                height++;
+            }
+        }
+        originalColumnHeights[col] = height;
+    }
     
     // Create grid
     const grid = Array(numRows).fill().map(() => Array(keyLength).fill(''));
@@ -162,9 +170,9 @@ function columnarTranspositionDecrypt(ciphertext, keyword) {
     let charIndex = 0;
     for (let i = 0; i < keyLength; i++) {
         const colIndex = columnOrder[i];
-        const height = columnHeights[i];
+        const height = originalColumnHeights[colIndex];
         for (let row = 0; row < height; row++) {
-            grid[row][colIndex] = ciphertext[charIndex++];
+            grid[row][colIndex] = text[charIndex++];
         }
     }
     
